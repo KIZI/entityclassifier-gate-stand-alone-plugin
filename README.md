@@ -19,7 +19,7 @@ This is a GATE stand-alone plugin for the Entityclassifier.eu NER system. You ca
 1. **Download and install GATE at your PC.**
 You can download it from http://gate.ac.uk/download/
 
-2. **Clone the repository in your GATE plugins directory**. In MAC OS the plugins directory can be found in /Applications/GATE_Developer_7.1/plugins
+2. **Clone the repository in your GATE plugins directory**. In MAC OS the plugins directory can be found in ```/Applications/GATE_Developer_7.1/plugins```
 
     ```
     git clone https://m1ci@bitbucket.org/entityclassifier/entityclassifier-gate-stand-alone-plugin.git
