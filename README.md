@@ -1,4 +1,4 @@
-# README #
+# Entityclassifier.eu stand-alone plugin for GATE #
 
 This is a GATE plugin for the Entityclassifier.eu NER system.
 
