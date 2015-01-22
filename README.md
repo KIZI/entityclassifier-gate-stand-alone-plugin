@@ -1,6 +1,6 @@
 # Entityclassifier.eu Stand-Alone Plugin for GATE #
 
-This is a GATE stand-alone plugin for the Entityclassifier.eu NER system. You can use it perform Named Entity Recognition over English, German and Dutch written texts. It can perform:
+This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. You can use it perform Named Entity Recognition over English, German and Dutch written texts. All resources you need for entity spotting, disambiguation and classification are provided with the plugin. If you want, you can use the **light** version of the plugin which is communicating with our REST API endpoint. Using this plugin you can perform:
 
 * ***Entity Spotting*** - each detected named entity in the text will be marked with ```NamedEntity``` annotation.
 
@@ -16,20 +16,22 @@ This is a GATE stand-alone plugin for the Entityclassifier.eu NER system. You ca
 
 #### Steps: ####
 
-1. **Download and install GATE at your PC.**
-You can download it from http://gate.ac.uk/download/
 
-2. **Clone the repository in your GATE plugins directory**. In MAC OS the plugins directory can be found in ```/Applications/GATE_Developer_7.1/plugins```
+1. **Clone the repository in your GATE plugins directory.** In MAC OS the plugins directory can be found in ```/Applications/GATE_Developer_7.1/plugins```
 
     ```
     git clone https://m1ci@bitbucket.org/entityclassifier/entityclassifier-gate-stand-alone-plugin.git
     ```
 
-3. **Run the build script found in the script folder.** It will download all required datasets, compile and prepare all required configuration files. BTW, grab a coffee or something, it will take some time ;)
+2. **Run the build script found in the script folder.** It will download all required datasets, compile and prepare all required configuration files. BTW, grab a coffee or something, it will take some time ;)
 
     ```
     sh build.sh
     ```
+
+3. **Download and install GATE.**
+You can download it from http://gate.ac.uk/download/
+
 
 4. **Start GATE and enable the plugin in the CREOLE plugin manager.** Search for Entityclassifier.eu and select load now and load always.
 
