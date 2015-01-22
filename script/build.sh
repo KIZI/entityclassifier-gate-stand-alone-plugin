@@ -154,11 +154,21 @@ fi
 cd ..
 cd ..
 
+echo "Compiling the plugin ..."
+mvn package
+
+echo "Copying compiled jar ..."
+cp target/Entityclassifier.eu_NER-1.0.jar Entityclassifier.eu_NER-1.0.jar 
+
+rm file.xml
+echo "Creating creole.xml document."
+printf '%s\n' '<?xml version="1.0"?>' >> creole.xml
+printf '%s\n' '<CREOLE-DIRECTORY>' >> creole.xml
+printf '%s\n' '    <JAR scan="true">Entityclassifier.eu_NER-1.0.jar</JAR>' >> creole.xml
+printf '%s\n' '</CREOLE-DIRECTORY>' >> creole.xml
+
 echo "Generating configuration file ..."
-java -cp Entityclassifier.eu_NER.jar cz.ctu.fit.entityclassifier.eu_ner.Configurator
-echo "Finished generation configuration."
-
-
+java -cp Entityclassifier.eu_NER-1.0.jar cz.vse.fis.keg.entityclassifier.gate.plugin.sa.Configurator
 
 echo "Datasets download finished!"
 

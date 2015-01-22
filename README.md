@@ -25,10 +25,10 @@ You can download it from http://gate.ac.uk/download/
     git clone https://m1ci@bitbucket.org/entityclassifier/entityclassifier-gate-stand-alone-plugin.git
     ```
 
-3. **Run the download-script found in the script folder.** It will download all required datasets. BTW, grab a coffee or something, it will take some time ;)
+3. **Run the build script found in the script folder.** It will download all required datasets, compile and prepare all required configuration files. BTW, grab a coffee or something, it will take some time ;)
 
     ```
-    sh download-script-v1.sh
+    sh build.sh
     ```
 
 4. **Start GATE and enable the plugin in the CREOLE plugin manager.** Search for Entityclassifier.eu and select load now and load always.
@@ -39,7 +39,7 @@ You can download it from http://gate.ac.uk/download/
     * ANNIE English Tokeniser PR
     * ANNIE Sentence Splitter PR
     * ANNIE POS Tagger PR
-    * JAPE Transducer PR - with a JAPE grammar which will perform named entity spotting. For English use the ```en_entity_extraction-v1.jape```. We provide also grammars for entity spotting for German and Dutch. The grammars are located in ```data/entity-extraction-grammars```
+    * JAPE Transducer PR - with a JAPE grammar which will perform named entity spotting. For English use the ```en_entity_extraction-v1.jape```. We also provide grammars for entity spotting for German and Dutch. The grammars are located in ```data/entity-extraction-grammars```
     * Entityclassifier.eu Stand-Alone PR - create an instance of classifier processing resource and add it at the end of the pipeline. When instantiating you can specify the language of the text on which you will run named entity recognition.
 
 6. **Create a document corpus and run the pipeline.**
@@ -52,7 +52,7 @@ You can download it from http://gate.ac.uk/download/
 
 
 
-If you need any help/support with the plugin or you notice some bugs feel free to contact us.
+If you need any help/support with the plugin free to contact us. Bugs please report as issues to this repository.
 
 License
 ------
