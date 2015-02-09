@@ -16,26 +16,25 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 
 #### Steps: ####
 
-
-1. **Clone the repository in your GATE plugins directory.** In MAC OS the plugins directory can be found in ```/Applications/GATE_Developer_7.1/plugins```
+1. **Add our plugin repository.** Open ```CREOLE Plugin Manager -> Configuration``` and add the following repository
 
     ```
-    git clone https://m1ci@bitbucket.org/entityclassifier/entityclassifier-gate-stand-alone-plugin.git
+    http://ner.vse.cz/GATE/gate-update-site.xml
     ```
 
-2. **Run the build script found in the script folder.** It will download all required datasets, compile and prepare all required configuration files. BTW, grab a coffee or something, it will take some time ;)
+2. **Install the plugin.**  In the CREOLE Plugin Manager open the ```Available to Install``` tab, check the ```Entityclassifier NER Light``` plugin and click ```Apply All```.
+
+3. **Request a free API key for the REST API.** Request an API key using the Web form http://entityclassifier.eu/thd/docs/#apikeyformfree!
+
+4. **Enable the plugin.** In the CREOLE Plugin Manager go to ```Available to Install```, search for ```Entityclassifier_NER_Light``` and select load now and load always.
+
+5. **Run the build script found in the ```script``` folder.** It will download all required datasets, compile and prepare all required configuration files. It will take some minutes.
 
     ```
     sh build.sh
     ```
 
-3. **Download and install GATE.**
-You can download it from http://gate.ac.uk/download/
-
-
-4. **Start GATE and enable the plugin in the CREOLE plugin manager.** Search for Entityclassifier.eu and select load now and load always.
-
-5. **Create a corpus pipeline.**
+6. **Create a corpus pipeline.**
 
     * Document Reset PR
     * ANNIE English Tokeniser PR
