@@ -163,7 +163,7 @@ cp target/Entityclassifier.eu_NER-1.0.jar Entityclassifier.eu_NER-1.0.jar
 rm file.xml
 echo "Creating creole.xml document."
 printf '%s\n' '<?xml version="1.0"?>' >> creole.xml
-printf '%s\n' '<CREOLE-DIRECTORY>' >> creole.xml
+printf '%s\n' '<CREOLE-DIRECTORY ID="org.vse.fis.keg.Entityclassifier NER Stand Alone" VERSION="1.0>' >> creole.xml
 printf '%s\n' '    <JAR scan="true">Entityclassifier.eu_NER-1.0.jar</JAR>' >> creole.xml
 printf '%s\n' '</CREOLE-DIRECTORY>' >> creole.xml
 
