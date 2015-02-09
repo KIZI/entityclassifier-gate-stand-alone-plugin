@@ -155,10 +155,10 @@ cd ..
 cd ..
 
 echo "Compiling the plugin ..."
-mvn package
+mvn clean compile assembly:single
 
 echo "Copying compiled jar ..."
-cp target/Entityclassifier.eu_NER-1.0.jar Entityclassifier.eu_NER-1.0.jar 
+cp target/Entityclassifier.eu_NER-1.0-jar-with-dependencies.jar Entityclassifier.eu_NER-1.0.jar 
 
 rm file.xml
 echo "Creating creole.xml document."
