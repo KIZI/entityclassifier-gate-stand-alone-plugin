@@ -47,7 +47,7 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 
 7. **Check the results!** - the spotted entities are annotated as ```NamedEntity``` annotations. Each entity has a ```disambiguation URI``` which is encoded as annotation feature ```itsrdf:taIdentRef=...```. Each assigned type is also present as annotation feature in the form of ```rdf:typeX=...```
 
-![entityclassifier-sa-gate-plugin-ss-1.png](https://bitbucket.org/repo/dAnKEK/images/3433177732-entityclassifier-sa-gate-plugin-ss-1.png)
+![68747470733a2f2f6269746275636b65742e6f72672f7265706f2f64416e4b454b2f696d616765732f333433333137373733322d656e74697479636c61737369666965722d73612d676174652d706c7567696e2d73732d312e706e67.png](https://bitbucket.org/repo/jnRMq7/images/504392779-68747470733a2f2f6269746275636b65742e6f72672f7265706f2f64416e4b454b2f696d616765732f333433333137373733322d656e74697479636c61737369666965722d73612d676174652d706c7567696e2d73732d312e706e67.png)
 
 ***Enjoy discovering entities!***
 
