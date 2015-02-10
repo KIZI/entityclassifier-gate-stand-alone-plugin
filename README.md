@@ -55,7 +55,7 @@ If you need any help/support with the plugin free to contact us. Bugs please rep
 
 How well it performs?
 ------
-We have done extensive evaluation of the tool. See the results above.
+We have done extensive evaluation of the tool. See the results below.
 
 ![Entity spotting evaluation results](https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1365533162&format=image)
 
