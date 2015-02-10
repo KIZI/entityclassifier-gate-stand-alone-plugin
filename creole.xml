@@ -6,4 +6,7 @@
     <JAR>./lib/slf4j-api-1.7.6.jar</JAR>
     <JAR>./lib/slf4j-jdk14-1.7.6.jar</JAR>
     <JAR>./lib/jena-iri-1.1.1.jar</JAR>
+    <JAR>./lib/jsonld-java-0.4.jar</JAR>
+    <JAR>./lib/jackson-annotations-2.3.0.jar</JAR>
+    <JAR>./lib/jackson-core-2.3.3.jar</JAR>
 </CREOLE-DIRECTORY>

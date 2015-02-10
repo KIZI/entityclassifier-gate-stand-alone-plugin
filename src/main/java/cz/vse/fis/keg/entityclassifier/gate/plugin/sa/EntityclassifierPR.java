@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Milan Dojchinovski <milan.dojchinovski@fit.cvut.cz>
- * http://dojchinovski.mk
+ http://dojchinovski.mk
  */
 @CreoleResource(name = "Entityclassifier.eu Stand-Alone PR", comment = "Perform named entity recognition over a GATE corpus")
 public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
@@ -59,7 +59,7 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
     /**
      * The location of the LHD v1.0 datasets for each language on your disk.
      */
-    private String lhd10Location = null;
+    private String lhdCoreLocation = null;
         
     /**
      * The location of the DBpedia Ontology on your disk.
@@ -99,9 +99,9 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
             in.close();
             
             String dbpediaOntologyDir = prop.get("dbpediaOntologyDir").toString();
-            String lhd10En = prop.get("lhd10En").toString();
-            String lhd10De = prop.get("lhd10De").toString();
-            String lhd10Nl = prop.get("lhd10Nl").toString();
+            String lhdCoreLocationEn = prop.get("lhd10En").toString();
+            String lhdCoreLocationDe = prop.get("lhd10De").toString();
+            String lhdCoreLocationNl = prop.get("lhd10Nl").toString();
             String inferredEn = prop.getProperty("inferredEn");
             String inferredDe = prop.getProperty("inferredDe");
             String inferredNl = prop.getProperty("inferredNl");
@@ -111,17 +111,17 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
             switch(lang) {
                 case "en":
                     this.lhdInferredLocation = inferredEn;
-                    this.lhd10Location = lhd10En;
+                    this.lhdCoreLocation = lhdCoreLocationEn;
                     break;
 
                 case "de":
                     this.lhdInferredLocation = inferredDe;
-                    this.lhd10Location = lhd10De;
+                    this.lhdCoreLocation = lhdCoreLocationDe;
                     break;
 
                 case "nl":
                     this.lhdInferredLocation = inferredNl;
-                    this.lhd10Location = lhd10Nl;
+                    this.lhdCoreLocation = lhdCoreLocationNl;
                     break;
             }
             
@@ -129,9 +129,9 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
             EntityClassifier.getInstance().init(
                     lang,
                     dbpediaOntologyDir, 
-                    lhd10En, 
-                    lhd10De, 
-                    lhd10Nl, 
+                    lhdCoreLocationEn, 
+                    lhdCoreLocationDe, 
+                    lhdCoreLocationNl, 
                     inferredEn, 
                     inferredDe, 
                     inferredNl);
@@ -177,48 +177,55 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
 
         fireStatusChanged("Started linking and classifying named entities");
         // looop through the Token annotations
-        for(int j = 0; j < tokenAnnotations.size(); ++j) {
-            try {
-                
-                // get a token annotation
-                Annotation entity = (Annotation)tokenAnnotations.get(j);
-                
-                // get the underlying string for the Token
-                Node isaStart = entity.getStartNode();
-                Node isaEnd = entity.getEndNode();
-                String underlyingString = document.getContent().getContent(isaStart.getOffset(), isaEnd.getOffset()).toString();
-//                System.out.println("NamedEntity: " + underlyingString);
-                String link = DBpediaLinker.getInstance().getDBpediaLink(underlyingString);
-//                System.out.println(link);
-                
-                Set<String> set = new HashSet<String>();
-                
-                if(link != null) {
-                    
-                    FeatureMap entityFM = entity.getFeatures();
-                    entityFM.put("itsrdf:taIdentRef", link);
-                        
-                    ArrayList<String> typesList = EntityClassifier.getInstance().getClasses(link, typesFilter);
-                    for(String typeURI : typesList){
-                        set.add(typeURI);
-                        if(typeURI.contains("/ontology")){
-                            for(String derTypeURI : EntityClassifier.getInstance().deriveTypes(typeURI)) {
-                                set.add(derTypeURI);
+        
+        if(tokenAnnotations.size()>0) {
+            for(int j = 0; j < tokenAnnotations.size(); ++j) {
+                try {
+
+                    // get a token annotation
+                    Annotation entity = (Annotation)tokenAnnotations.get(j);
+
+                    // get the underlying string for the Token
+                    Node isaStart = entity.getStartNode();
+                    Node isaEnd = entity.getEndNode();
+                    String underlyingString = document.getContent().getContent(isaStart.getOffset(), isaEnd.getOffset()).toString();
+    //                System.out.println("NamedEntity: " + underlyingString);
+                    String link = DBpediaLinker.getInstance().getDBpediaLink(underlyingString);
+    //                System.out.println(link);
+
+                    Set<String> set = new HashSet<String>();
+
+                    if(link != null) {
+
+                        FeatureMap entityFM = entity.getFeatures();
+                        entityFM.put("itsrdf:taIdentRef", link);
+
+                        ArrayList<String> typesList = EntityClassifier.getInstance().getClasses(link, typesFilter);
+                        for(String typeURI : typesList){
+                            set.add(typeURI);
+                            if(typeURI.contains("/ontology")){
+                                for(String derTypeURI : EntityClassifier.getInstance().deriveTypes(typeURI)) {
+                                    set.add(derTypeURI);
+                                }
                             }
                         }
+
+    //                    String types = "";
+                        int counter = 0;
+                        for(String type : set) {
+    //                        types+="["+type+"]";
+                            entityFM.put("rdf:type"+counter, type);
+                            counter++;
+                        }
                     }
-                    
-//                    String types = "";
-                    int counter = 0;
-                    for(String type : set) {
-//                        types+="["+type+"]";
-                        entityFM.put("rdf:type"+counter, type);
-                        counter++;
-                    }
+                } catch (InvalidOffsetException ex) {
+                    Logger.getLogger(EntityclassifierPR.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (InvalidOffsetException ex) {
-                Logger.getLogger(EntityclassifierPR.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            throw new ExecutionException("No tokens to process in document "+document.getName()+"\n" +
+                                     "Please run a tokenizer, sentence splitter"+
+                                     "and POS tagger first!");
         }
     
         // progress
@@ -256,7 +263,7 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
     * onlyDBpediaOntologyTypes
     * 
     */
-    @CreoleParameter(comment = "Specify whether you want only DBpedia Ontology types (yes) or not (no).",
+    @CreoleParameter(comment = "Specify whether you prefer the entities to be classified with DBpedia Ontology types (dbo), DBpedia resources (dbinstance), or both (all). ",
             defaultValue="all")
     @RunTime
     public void setTypesFilter(String typesFilter) {
@@ -279,17 +286,17 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
     /**
      * Getters and setters for the LHD datasets location.
      */
-    public String getLhd10Location() {
-        return lhd10Location;
+    public String getLhdCoreLocation() {
+        return lhdCoreLocation;
     }
   
-    @CreoleParameter(comment = "Location on your disk for the v1.0 dataset.")
+    @CreoleParameter(comment = "Location on your disk for the LHD Core dataset.")
     @RunTime
-    public void setLhd10Location(String lhd10Location) {
-        this.lhd10Location = lhd10Location;
+    public void setLhdCoreLocation(String lhdCoreLocation) {
+        this.lhdCoreLocation = lhdCoreLocation;
     }
     
-    @CreoleParameter(comment = "Inferred dataset.")
+    @CreoleParameter(comment = "Location on your disk for the LHD inferred dataset.")
     @RunTime
     public void setLhdInferredLocation(String lhdInferredLocation) {
         this.lhdInferredLocation = lhdInferredLocation;
@@ -309,7 +316,7 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
         return wikipediaSearchEndpoint;
     }
   
-    @CreoleParameter(comment = "The live endpoint for the English Wikipedia Search API.")
+    @CreoleParameter(comment = "The endpoint for the English Wikipedia Search API.")
     @RunTime
     @Optional
     public void setWikipediaSearchEndpoint(String wikipediaSearchEndpoint) {
