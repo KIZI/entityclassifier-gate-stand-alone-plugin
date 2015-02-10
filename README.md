@@ -38,7 +38,7 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
     * ANNIE English Tokeniser PR
     * ANNIE Sentence Splitter PR
     * ANNIE POS Tagger PR
-    * JAPE Transducer PR - with a JAPE grammar which will perform named entity spotting. For English use the ```en_entity_extraction-v1.jape```. We also provide grammars for entity spotting for German and Dutch. The grammars are located in ```data/entity-extraction-grammars```
+    * JAPE Transducer PR - with a JAPE grammar which will perform named entity spotting. For English use the ```en_entity_extraction-v1.jape```. We also provide grammars for entity spotting for German and Dutch. The grammars are located in ```../GATE_Developer_8.0/plugins/Entityclassifier_NER_Stand_Alone/data/entity-extraction-grammars``` folder
     * Entityclassifier.eu Stand-Alone PR - create an instance of classifier processing resource and add it at the end of the pipeline. When instantiating you can specify the language of the text on which you will run named entity recognition.
 
 6. **Create a document corpus and run the pipeline.**
