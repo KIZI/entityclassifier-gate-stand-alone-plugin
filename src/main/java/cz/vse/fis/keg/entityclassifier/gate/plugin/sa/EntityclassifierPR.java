@@ -59,13 +59,14 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
     /**
      * The location of the LHD v1.0 datasets for each language on your disk.
      */
-    private String lhd10Location = "/Users/Milan/Documents/research/repositories/linked-tv/code/thd-v04/scripts/datasets/lhd-2.3.8/1.0/en.LHDv1.draft.nt";
+    private String lhd10Location = null;
         
     /**
      * The location of the DBpedia Ontology on your disk.
      * http://wiki.dbpedia.org/Downloads39#dbpedia-ontology
      */
-    private String dbpediaOntologyLocation = "/Users/Milan/Documents/research/repositories/linked-tv/code/thd-v04/scripts/datasets/dbpedia-3.9/dbpedia_3.9.owl";
+//    private String dbpediaOntologyLocation = "/Users/Milan/Documents/research/repositories/linked-tv/code/thd-v04/scripts/datasets/dbpedia-3.9/dbpedia_3.9.owl";
+    private String dbpediaOntologyLocation = null;
     
     /**
      * Wikipedia Search API endpoints (used for disambiguation of the spotted entities).
@@ -89,7 +90,7 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
     
     /** Initialise this resource, and return it. */
     public Resource init() throws ResourceInstantiationException {
-        
+        System.out.println("Initialising the plugin.");
         try {
             // Reading configuration file.
             Properties prop = new Properties();
@@ -104,18 +105,23 @@ public class EntityclassifierPR extends gate.creole.AbstractLanguageAnalyser
             String inferredEn = prop.getProperty("inferredEn");
             String inferredDe = prop.getProperty("inferredDe");
             String inferredNl = prop.getProperty("inferredNl");
+                        
+            this.dbpediaOntologyLocation = dbpediaOntologyDir;
             
             switch(lang) {
                 case "en":
                     this.lhdInferredLocation = inferredEn;
+                    this.lhd10Location = lhd10En;
                     break;
 
                 case "de":
                     this.lhdInferredLocation = inferredDe;
+                    this.lhd10Location = lhd10De;
                     break;
 
                 case "nl":
                     this.lhdInferredLocation = inferredNl;
+                    this.lhd10Location = lhd10Nl;
                     break;
             }
             
