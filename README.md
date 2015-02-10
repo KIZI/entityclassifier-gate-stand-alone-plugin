@@ -57,7 +57,9 @@ How well it performs?
 ------
 We have done extensive evaluation of the tool. See the results above.
 
-![Alt text](https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1365533162&format=interactive)
+![Entity spotting evaluation results](https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1365533162&format=image)
+
+![Entity spotting and linking evaluation results](https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1243738458&format=image)
 
 License
 ------
