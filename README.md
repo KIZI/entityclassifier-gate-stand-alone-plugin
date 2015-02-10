@@ -29,7 +29,7 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 4. **Run the build script found in the ```script``` folder.** It will download all required datasets, compile and prepare all required configuration files. It will take some minutes.
 
     ```
-    sh build.sh
+    bash build.sh
     ```
 
 5. **Create a corpus pipeline.**
