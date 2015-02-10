@@ -16,7 +16,7 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 
 #### Steps: ####
 
-1. **Add our plugin repository.** Open ```CREOLE Plugin Manager -> Configuration``` and add the following repository
+1. **Add our plugin repository.** Open ```CREOLE Plugin Manager -> Configuration```, check if the ```User Plugin Directory``` is set, otherwise configure it. Finally, add the following repository to the list of plugin repositories:
 
     ```
     http://ner.vse.cz/GATE/gate-update-site.xml
