@@ -53,6 +53,14 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 
 If you need any help/support with the plugin free to contact us. Bugs please report as issues to this repository.
 
+How well it performs?
+------
+We have done extensive evaluation of the tool. See the results above.
+
+
+<iframe width="785" height="452" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1365533162&amp;format=interactive"></iframe>
+
+
 License
 ------
 
