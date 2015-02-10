@@ -22,17 +22,15 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
     http://ner.vse.cz/GATE/gate-update-site.xml
     ```
 
-2. **Install the plugin.**  In the CREOLE Plugin Manager open the ```Available to Install``` tab, check the ```Entityclassifier NER Stand Alone``` plugin and click ```Apply All```.
+2. **Install the plugin.**  In the ```CREOLE Plugin Manager``` go to ```Available to Install``` tab, check ```Entityclassifier_NER_Stand_Alone``` and click ```Apply all```, then go to the ```Available plugins``` tab and select ```load now``` and ```load always```.
 
-3. **Enable the plugin.** In the CREOLE Plugin Manager go to ```Available to Install```, search for ```Entityclassifier_NER_Stand_Alone``` and select load now and load always.
-
-4. **Run the build script.** The script can be found in the ```../GATE_Developer_8.0/plugins/Entityclassifier_NER_Stand_Alone/script``` folder. It will download all required datasets, compile and prepare all required configuration files. This can take a few minutes.
+3. **Run the build script.** The script can be found in the ```../GATE_Developer_8.0/plugins/Entityclassifier_NER_Stand_Alone/script``` folder. It will download all required datasets, compile and prepare all required configuration files. This can take a few minutes.
 
     ```
     bash build.sh
     ```
 
-5. **Create a corpus pipeline.**
+4. **Create a corpus pipeline.**
 
     * Document Reset PR
     * ANNIE English Tokeniser PR
@@ -41,9 +39,9 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
     * JAPE Transducer PR - with a JAPE grammar which will perform named entity spotting. For English use the ```en_entity_extraction-v1.jape```. We also provide grammars for entity spotting for German and Dutch. The grammars are located in ```../GATE_Developer_8.0/plugins/Entityclassifier_NER_Stand_Alone/data/entity-extraction-grammars``` folder
     * Entityclassifier.eu Stand-Alone PR - create an instance of classifier processing resource and add it at the end of the pipeline. When instantiating you can specify the language of the text on which you will run named entity recognition.
 
-6. **Create a document corpus and run the pipeline.**
+5. **Create a document corpus and run the pipeline.**
 
-7. **Check the results!** - the spotted entities are annotated as ```NamedEntity``` annotations. Each entity has a ```disambiguation URI``` which is encoded as annotation feature ```itsrdf:taIdentRef=...```. Each assigned type is also present as annotation feature in the form of ```rdf:typeX=...```
+6. **Check the results!** - the spotted entities are annotated as ```NamedEntity``` annotations. Each entity has a ```disambiguation URI``` which is encoded as annotation feature ```itsrdf:taIdentRef=...```. Each assigned type is also present as annotation feature in the form of ```rdf:typeX=...```
 
 ![68747470733a2f2f6269746275636b65742e6f72672f7265706f2f64416e4b454b2f696d616765732f333433333137373733322d656e74697479636c61737369666965722d73612d676174652d706c7567696e2d73732d312e706e67.png](https://bitbucket.org/repo/jnRMq7/images/504392779-68747470733a2f2f6269746275636b65742e6f72672f7265706f2f64416e4b454b2f696d616765732f333433333137373733322d656e74697479636c61737369666965722d73612d676174652d706c7567696e2d73732d312e706e67.png)
 
