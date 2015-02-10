@@ -155,7 +155,7 @@ cd ..
 cd ..
 
 echo "Compiling the plugin ..."
-mvn clean compile assembly:single
+mvn clean package
 
 echo "Copying compiled jar ..."
 cp target/Entityclassifier.eu_NER-1.0-jar-with-dependencies.jar Entityclassifier.eu_NER-1.0.jar 

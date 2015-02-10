@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <CREOLE-DIRECTORY ID="org.vse.fis.keg.Entityclassifier NER Stand Alone" VERSION="1.0">
     <JAR scan="true">Entityclassifier.eu_NER-1.0.jar</JAR>
+    <JAR>./lib/jena-core-2.11.2.jar</JAR>
+    <JAR>./lib/jena-arq-2.11.2.jar</JAR>
+    <JAR>./lib/slf4j-api-1.7.6.jar</JAR>
+    <JAR>./lib/slf4j-jdk14-1.7.6.jar</JAR>
+    <JAR>./lib/jena-iri-1.1.1.jar</JAR>
 </CREOLE-DIRECTORY>
