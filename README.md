@@ -26,7 +26,7 @@ This is a GATE **stand-alone** plugin for the Entityclassifier.eu NER system. Yo
 
 3. **Enable the plugin.** In the CREOLE Plugin Manager go to ```Available to Install```, search for ```Entityclassifier_NER_Stand_Alone``` and select load now and load always.
 
-4. **Run the build script found in the ```script``` folder.** It will download all required datasets, compile and prepare all required configuration files. It will take some minutes.
+4. **Run the build script.** The script can be found in the ```../GATE_Developer_8.0/plugins/Entityclassifier_NER_Stand_Alone/script``` folder. It will download all required datasets, compile and prepare all required configuration files. This can take a few minutes.
 
     ```
     bash build.sh
