@@ -59,6 +59,13 @@ We have done extensive evaluation of the tool. See the results below.
 
 ![Entity spotting and linking evaluation results](https://docs.google.com/spreadsheets/d/1Zv9s91FOe84BpOWQMSWH57S7dk3C-l-UO_Wtqq63hEw/pubchart?oid=1243738458&format=image)
 
+
+
+Comparison with the Light REST API plugin
+------
+
+![Plugin comparison](https://docs.google.com/drawings/d/1bdfpW38qSLj806KvDd6eMeq3YBOS4dTMynlQ-_5OLBg/pub?w=554&h=337)
+
 License
 ------
 
