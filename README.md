@@ -61,7 +61,7 @@ We have done extensive evaluation of the tool. See the results below.
 
 
 
-Comparison with the Light REST API plugin
+Comparison: Stand-Alone vs. Light REST API plugin
 ------
 
 ![Plugin comparison](https://docs.google.com/drawings/d/1bdfpW38qSLj806KvDd6eMeq3YBOS4dTMynlQ-_5OLBg/pub?w=554&h=337)
