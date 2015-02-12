@@ -1,10 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * #%L
+ * Stand Alone GATE plugin of the Entityclassifier.eu NER
+ * %%
+ * Copyright (C) 2015 Knowledge Engineering Group (KEG) and Web Intelligence Research Group (WIRG) - Milan Dojchinovski (milan.dojchinovski@fit.cvut.cz)
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
  */
-
-package cz.vse.fis.keg.entityclassifier.gate.plugin.sa;
+package cz.ctu.fit.entityclassifier.gate.plugin.thd.standalone;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +29,6 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +36,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author Milan
+ * @author Milan Dojchinovski
+ <milan.dojchinovski@fit.cvut.cz>
+ Twitter: @m1ci
+ www: http://dojchinovski.mk
  */
 public class DBpediaLinker {
     
@@ -36,13 +52,13 @@ public class DBpediaLinker {
         return instance;
     }
     
-    public String getDBpediaLink(String query) {
+    public String getDBpediaLink(String query, String endpoint) {
+        
         String dbpediaLink = null;
         try {
             URL url = null;
             query = URLEncoder.encode(query, "UTF-8");
-            String path = "http://en.wikipedia.org/w/api.php?action=query&format=xml&list=search&srlimit=1&srsearch="+query;
-//            System.out.println(path);
+            String path = endpoint+"?action=query&format=xml&list=search&srlimit=1&srsearch="+query;
             url = new URL(path);
             StringBuffer buffer = new StringBuffer();
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
@@ -58,7 +74,6 @@ public class DBpediaLinker {
             isr.close();
             
             String responseText = buffer.toString();
-//            System.out.println(responseText);
             Pattern articleTitle = Pattern.compile("title=\"(.*?)\"", Pattern.DOTALL);
             Matcher titleMatcher = articleTitle.matcher(responseText);
             while (titleMatcher.find()) {
@@ -95,7 +110,6 @@ public class DBpediaLinker {
         } catch (IOException ex) {
             Logger.getLogger(DBpediaLinker.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        System.out.println(sURL + " " + valid);
         return valid;    
     }
 }

@@ -21,9 +21,9 @@ dbpediaOntology="dbpedia_3.9.owl.bz2"
 lhdDownloadServer="http://boa.lmcloud.vse.cz/LHD/"
 bitbucketDownloadServer="https://bitbucket.org/entityclassifier/entityclassifier-gate-stand-alone-plugin/raw/014957fa3e44a81ebd58e801b13e9af204a01cde/datasets/"
 
-enlhd10="en.LHDv1.draft.nt.gz"
-nllhd10="nl.LHDv1.draft.nt.gz"
-delhd10="de.LHDv1.draft.nt.gz"
+enlhdCore="en.LHDv1.draft.nt.gz"
+nllhdCore="nl.LHDv1.draft.nt.gz"
+delhdCore="de.LHDv1.draft.nt.gz"
 
 eninferred="en.inferredmappingstoDBpedia.nt"
 deinferred="de.inferredmappingstoDBpedia.nt"
@@ -35,13 +35,13 @@ nlinferred="nl.inferredmappingstoDBpedia.nt"
 
 cd ..
 
-# Creating download directory "data".
-if [ ! -d "data" ]; then
+# Creating download directory "resources".
+if [ ! -d "resources" ]; then
   # Check if the partitions directory exist.
-  mkdir "data"
+  mkdir "resources"
 fi
 
-cd data
+cd resources
 
 # Creating download directory "dbpedia-3.9".
 if [ ! -d "dbpedia-3.9" ]; then
@@ -84,44 +84,44 @@ cd lhd-2.3.9
 
 ################ Downloading Linked Hypernyms Dataset ################
 
-### Downloading and decompressing English LHD v1.0 partitions ###
-if [ ! -f "${enlhd10:0:17}" ]; then
-  echo "Started downloading English LHD v1.0 files ..."
-  curl -# -O "$lhdDownloadServer$enlhd10"
+### Downloading and decompressing English LHD Core partitions ###
+if [ ! -f "${enlhdCore:0:17}" ]; then
+  echo "Started downloading English LHD Core files ..."
+  curl -# -O "$lhdDownloadServer$enlhdCore"
   echo "Finished downloading."
 fi
 
-if [ ! -f "${enlhd10:0:17}" ]; then
-  echo "Started decompressing English LHD v1.0 files ..."
-  gunzip $enlhd10
+if [ ! -f "${enlhdCore:0:17}" ]; then
+  echo "Started decompressing English LHD Core files ..."
+  gunzip $enlhdCore
   echo "Finished decompressing."
 fi
 ##############################################################
 
-### Downloading and decompressing Dutch LHD v1.0 partitions ###
-if [ ! -f "${nllhd10:0:17}" ]; then
-  echo "Started downloading Dutch LHD v1.0 files ..."
-  curl -# -O "$lhdDownloadServer$nllhd10"
+### Downloading and decompressing Dutch LHD Core partitions ###
+if [ ! -f "${nllhdCore:0:17}" ]; then
+  echo "Started downloading Dutch LHD Core files ..."
+  curl -# -O "$lhdDownloadServer$nllhdCore"
   echo "Finished downloading."
 fi
 
-if [ ! -f "${nllhd10:0:17}" ]; then
-  echo "Started decompressing Dutch LHD v1.0 files ..."
-  gunzip $nllhd10
+if [ ! -f "${nllhdCore:0:17}" ]; then
+  echo "Started decompressing Dutch LHD Core files ..."
+  gunzip $nllhdCore
   echo "Finished decompressing."
 fi
 ##############################################################
 
-### Downloading and decompressing German LHD v1.0 partitions ###
-if [ ! -f "${delhd10:0:17}" ]; then
-  echo "Started downloading German LHD v1.0 files ..."
-  curl -# -O "$lhdDownloadServer$delhd10"
+### Downloading and decompressing German LHD Core partitions ###
+if [ ! -f "${delhdCore:0:17}" ]; then
+  echo "Started downloading German LHD Core files ..."
+  curl -# -O "$lhdDownloadServer$delhdCore"
   echo "Finished downloading."
 fi
 
-if [ ! -f "${delhd10:0:17}" ]; then
-  echo "Started decompressing German LHD v1.0 files ..."
-  gunzip $delhd10
+if [ ! -f "${delhdCore:0:17}" ]; then
+  echo "Started decompressing German LHD Core files ..."
+  gunzip $delhdCore
   echo "Finished decompressing."
 fi
 ##############################################################
@@ -155,6 +155,7 @@ cd ..
 cd ..
 
 echo "Compiling the plugin ..."
+mvn license:update-file-header
 mvn clean package
 
 echo "Copying compiled jar ..."
@@ -167,7 +168,9 @@ cp target/Entityclassifier.eu_NER-1.0-jar-with-dependencies.jar Entityclassifier
 #printf '%s\n' '</CREOLE-DIRECTORY>' >> creole.xml
 
 echo "Generating configuration file ..."
-java -cp Entityclassifier.eu_NER-1.0.jar cz.vse.fis.keg.entityclassifier.gate.plugin.sa.Configurator
+java -cp Entityclassifier.eu_NER-1.0.jar cz.ctu.fit.entityclassifier.gate.plugin.thd.standalone.Configurator
+
+mvn clean
 
 echo "Datasets download finished!"
 

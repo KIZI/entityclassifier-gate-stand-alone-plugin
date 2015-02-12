@@ -1,0 +1,83 @@
+Phase:	EntityExtraction
+Input:  Token
+Options: control = appelt
+
+Rule: NE_Simple
+Priority: 40
+
+(
+(({Token.category=="adj",Token.orth=="upperInitial"})|
+({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounsg",Token.orth=="upperInitial"})|({Token.category=="nounprop"})|({Token.category=="nounpl",Token.orth=="upperInitial"}))+
+)
+:ne
+--> 
+:ne.NamedEntity= {rule = "NE_Simple"}
+
+Rule: NE_APOSTR
+Priority: 40
+
+(
+(({Token.category=="adj",Token.orth=="upperInitial"})|
+({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounsg",Token.orth=="upperInitial"})|({Token.category=="nounprop"})|({Token.category=="nounpl",Token.orth=="upperInitial"}))+
+({Token.string=="'"})+
+(({Token.category=="adj",Token.orth=="upperInitial"})|
+({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounsg",Token.orth=="upperInitial"})|({Token.category=="nounprop"})|({Token.category=="nounpl",Token.orth=="upperInitial"}))+
+)
+:ne
+--> 
+:ne.NamedEntity= {rule = "NE_Simple_APOSTR"}
+
+
+Rule: NE_COMPOUND
+Priority: 40
+
+(
+(({Token.category=="adj",Token.orth=="upperInitial"})|
+({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounsg",Token.orth=="upperInitial"})|({Token.category=="nounprop"})|({Token.category=="nounpl",Token.orth=="upperInitial"}))+
+({Token.category=="det__art"}|{Token.category=="conjcoord"}|{Token.string=="-"})+
+(({Token.category=="adj",Token.orth=="upperInitial"})|
+({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounsg",Token.orth=="upperInitial"})|({Token.category=="nounprop"})|({Token.category=="nounpl",Token.orth=="upperInitial"}))+
+)
+:ne
+--> 
+:ne.NamedEntity= {rule = "NE_Simple_APOSTR"}
+
+
+//Rule: NE_Simple_plural
+//Priority: 40
+
+//(
+//(({Token.category=="adj",Token.orth=="upperInitial"})|
+//({Token.category=="adj",Token.orth=="mixedCaps"})|({Token.category=="nounpl",Token.orth=="upperInitial"})|({Token.category=="nounprop"}))*
+//)
+//:ne
+//--> 
+//:ne.NamedEntity= {rule = "NE_SimplePlural"}
+
+
+Rule: E_Simple
+Priority: 40
+
+({Token.category=="adj"})*({Token.category=="nounsg",Token.orth=="lowercase"})+
+:e
+--> 
+:e.CommonEntity= {rule = "E_Simple"}
+
+
+Rule: E_Simple_plural
+Priority: 40
+
+({Token.category=="adj"})*({Token.category=="nounpl",Token.orth=="lowercase"})+
+:e
+--> 
+:e.CommonEntity= {rule = "E_SimplePlural"}
+
+Rule: EntityExtractionRule4
+Priority: 110
+(
+({Token.orth == "upperInitial"}{Token.kind == "punctuation", Token.string == "."})
+({Token.orth == "upperInitial"}{Token.kind == "punctuation", Token.string == "."})+
+)
+:entityString
+-->
+:entityString.NamedEntity = {name="single-character entity"}
