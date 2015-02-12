@@ -42,13 +42,13 @@ public class Configurator {
         try {
             String currentDir = System.getProperty("user.dir"); 
             output = new FileOutputStream("config.properties");
-            prop.setProperty("dbpediaOntologyDir", currentDir+"/data/dbpedia-3.9/dbpedia_3.9.owl");
-            prop.setProperty("lhd10En", currentDir+"/data/lhd-2.3.9/en.LHDv1.draft.nt");
-            prop.setProperty("lhd10De", currentDir+"/data/lhd-2.3.9/de.LHDv1.draft.nt");
-            prop.setProperty("lhd10Nl", currentDir+"/data/lhd-2.3.9/nl.LHDv1.draft.nt");
-            prop.setProperty("inferredEn", currentDir+"/data/lhd-2.3.9/en.inferredmappingstoDBpedia.nt");
-            prop.setProperty("inferredDe", currentDir+"/data/lhd-2.3.9/de.inferredmappingstoDBpedia.nt");
-            prop.setProperty("inferredNl", currentDir+"/data/lhd-2.3.9/nl.inferredmappingstoDBpedia.nt");
+            prop.setProperty("dbpediaOntologyDir", currentDir+"/resources/dbpedia-3.9/dbpedia_3.9.owl");
+            prop.setProperty("lhd10En", currentDir+"/resources/lhd-2.3.9/en.LHDv1.draft.nt");
+            prop.setProperty("lhd10De", currentDir+"/resources/lhd-2.3.9/de.LHDv1.draft.nt");
+            prop.setProperty("lhd10Nl", currentDir+"/resources/lhd-2.3.9/nl.LHDv1.draft.nt");
+            prop.setProperty("inferredEn", currentDir+"/resources/lhd-2.3.9/en.inferredmappingstoDBpedia.nt");
+            prop.setProperty("inferredDe", currentDir+"/resources/lhd-2.3.9/de.inferredmappingstoDBpedia.nt");
+            prop.setProperty("inferredNl", currentDir+"/resources/lhd-2.3.9/nl.inferredmappingstoDBpedia.nt");
             prop.store(output, null);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Configurator.class.getName()).log(Level.SEVERE, null, ex);
