@@ -6,7 +6,9 @@
   <artifactId>entityclassifier-gate-stand-alone-plugin</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
-
+<!--  <organization>
+      <name>Knowledge Engineering Group (KEG) and Web Intelligence Research Group (WIRG)</name>
+  </organization>-->
   <name>Entityclassifier.eu_NER</name>
   <url>http://maven.apache.org</url>
     <build>
@@ -29,6 +31,35 @@
                <target>1.7</target>
             </configuration>
          </plugin>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <licenseName>gpl_v3</licenseName>
+                    <inceptionYear>2015</inceptionYear>
+                    <organizationName>Knowledge Engineering Group (KEG) and Web Intelligence Research Group (WIRG) - Milan Dojchinovski (milan.dojchinovski@fit.cvut.cz)</organizationName>
+                    <projectName>Stand Alone GATE plugin of the Entityclassifier.eu NER</projectName>                    
+                    <canUpdateCopyright>true</canUpdateCopyright>
+                    <canUpdateDescription>true</canUpdateDescription>
+                    <canUpdateLicense>true</canUpdateLicense>
+                    <excludes>
+                        <exclude>**/README</exclude>
+                        <exclude>*.log</exclude>
+                        <exclude>*.html</exclude>
+                        <exclude>start.sh</exclude>
+                        <exclude>**/LICENSE</exclude>
+                        <exclude>documentation/**</exclude>
+                        <exclude>repository/**</exclude>
+                        <exclude>gerbil_data/**</exclude>
+                        <exclude>src/main/resources/**</exclude>
+                        <exclude>src/main/properties/**</exclude>
+                        <exclude>src/main/webapp/**</exclude>
+                        <exclude>src/test/resources/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
       </plugins>
     </build>
     <repositories>
